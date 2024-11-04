@@ -6,6 +6,7 @@ WORKDIR /app
 
 # Copiar los archivos de configuración (package.json y package-lock.json)
 COPY package*.json ./
+git commit -m "first commit"
 
 # Instalar las dependencias de producción
 RUN npm install --production
