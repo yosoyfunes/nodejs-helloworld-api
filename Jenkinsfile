@@ -14,8 +14,8 @@ pipeline {
                 sh 'npm install'
                 echo 'Ejecutar test'
                 sh 'npm test'
-                // echo 'Ejecutar npm start'
-                // sh 'npm start'
+                echo 'Ejecutar npm start'
+                sh 'npm start'
                 echo 'ejecutar curl'
                 sh 'curl http://localhost:3000'
             }
