@@ -4,28 +4,33 @@ pipeline {
         nodejs 'nodejs'
     }
     stages {
-        stage('Build') {
+        stage('Dependencies') {
             steps {
-                // echo "Clona el repositorio"
-                // sh 'git clone https://github.com/yosoyfunes/nodejs-helloworld-api.git'
-                // echo "mover a la carpeta"
-                // sh 'cd nodejs-helloworld-api'
+                // Instalar dependencias 
                 echo "Ejecutar npm install" 
                 sh 'npm install'
+            }
+        }
+        stage('Run Tests') {
+            steps {
+                // Ejecutar pruebas unitarias con npm test
                 echo 'Ejecutar test'
                 sh 'npm test'
+            }
+        }
+        stage('Start Application') {
+            steps {
+                // Iniciar la aplicación uso de "&" para ejecutar en segundo planoy que no bloquee el pipeline
                 echo 'Ejecutar npm start'
                 sh 'npm start&'
+            }
+        }
+        stage('Health Check') {
+            steps {
+                // Verificar que la aplicación responda correctamente
                 echo 'ejecutar curl'
                 sh 'curl http://localhost:3000'
             }
         }
-
-        // stage('Test') {
-        //     steps {
-        //         echo "Ejecutar npm test push" 
-        //         sh 'npm test'
-        //     }
-        // }
     }
 }
