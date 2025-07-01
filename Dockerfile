@@ -7,8 +7,8 @@ WORKDIR /app
 # Copiar los archivos de configuración (package.json y package-lock.json)
 COPY package*.json ./
 
-# Instalar las dependencias de producción
-RUN npm install --production
+# Instalar dependencias
+RUN npm install
 
 # Etapa 2: Construcción de la imagen final de producción
 FROM node:18-slim
